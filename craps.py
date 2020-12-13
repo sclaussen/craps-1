@@ -5,23 +5,21 @@ class Bankroll:
 
     def __init__(self, money):
         self.money = money
+        print(self)
 
 
 class Bet:
     PASS_LINE = 0
-    PASS_LINE_ODDS = 1
-    COME = 2
-    POINT = 3
-    POINT_ODDS = 4
+    COME = 1
+    POINT = 2
     bets = {
         0 : "PASS_LINE",
-        1 : "PASS_LINE_ODDS",
-        2 : "COME",
-        3 : "POINT",
-        4 : "POINT_ODDS"
+        1 : "COME",
+        2 : "POINT"
     }
 
     betType = -1
+    oddsAmount = 0
     money = 0
     point = 0
 
@@ -29,9 +27,19 @@ class Bet:
         self.betType = betType
         self.money = money
         self.point = point
+        print(self)
+
+    def addOdds(self, oddsAmount):
+        self.oddsAmount = oddsAmount
+        print(self)
+
+    def setPoint(self, point):
+        self.point = point
+        print(self)
 
     def __str__(self):
-        return "Bet: " + self.bets[self.betType] + " " + str(self.money) + " " + str(self.point)
+        return "Bet: " + self.bets[self.betType] + " " + str(self.money) + " " + str(self.oddsAmount) + " " + str(self.point)
+
 
 class Dice:
     dice1 = 0
@@ -40,6 +48,7 @@ class Dice:
     def roll(self):
         self.dice1 = random.randint(1, 6)
         self.dice2 = random.randint(1, 6)
+        print(self)
         return self.dice1 + self.dice2
 
     def __str__(self):
@@ -48,9 +57,11 @@ class Dice:
 
 
 bet = Bet(Bet.PASS_LINE, 5)
+bet.setPoint(6)
+bet.addOdds(10)
 print(bet)
 
-dice = Dice()
-sum = dice.roll()
-print(sum)
-print(dice)
+# dice = Dice()
+# sum = dice.roll()
+# print(sum)
+# print(dice)
